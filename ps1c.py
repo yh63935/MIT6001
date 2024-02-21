@@ -31,13 +31,14 @@ while abs(current_savings - portion_down_payment) > epsilon and guess <= portion
             annual_salary *= (1 + semi_annual_raise)
             monthly_salary = annual_salary / 12
             monthly_salary_saved = monthly_salary * guess / 10000
-
     if current_savings < portion_down_payment:
         low = guess
     else:
         high = guess
     guess = int(round((low + high) / 2))
-    
+    # if low is greater or equal to high, there is no more search area to be halved
+    if low>=high:
+        break;
 if abs(current_savings - portion_down_payment) < epsilon:
     print("Best savings rate: ", guess/10000)
     print("Steps in bisection search", steps);
