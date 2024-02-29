@@ -13,7 +13,7 @@ r = 0.04
 steps = 0
 current_savings = 0
 
-while abs(current_savings - portion_down_payment) > epsilon and guess <= portion_down_payment:
+while abs(current_savings - portion_down_payment) > epsilon:
     steps += 1
     print('steps',steps)
     months = 0
