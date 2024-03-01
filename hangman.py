@@ -157,17 +157,15 @@ def hangman(secret_word):
         # Decrease warnings if invalid guess or letter is already guessed
         # If warnings exist, if not decrease guesses
         if str.isalpha(guess) == False or formattedGuess in letters_guessed:
-            print("letter guessed", letters_guessed)
-            print("guesses after validating formatted Guess first", guesses)
 
             if warnings>0:
                 warnings-=1
+                message = f"You have {warnings} warnings left: {guessed_word}"
+
             else:
                 guesses-=1
-                print("guesses after validating formatted Guess second", guesses)
-            warningsLeftMessage = f"You have {warnings} warnings left: {guessed_word}"
-            noWarningsLeftMessage = "You have no warnings left so you lose one guess"
-            message =  warningsLeftMessage if warnings>=0 else noWarningsLeftMessage
+                message = f"You have no warnings left so you lose one guess: {guessed_word}"
+            
             if str.isalpha(guess) == False:
                 print(f"Oops! That is not a valid letter. {message}")
             else:
@@ -194,7 +192,7 @@ def hangman(secret_word):
         print("Congratulations, you won!")
         print(f"Your total score for this game is: {total_score} ")
     else:
-        print(f"You lost :( The secret word was {secret_word}")
+        print(f"Sorry, you ran out of guesses. The word was {secret_word}")
         
     
 
@@ -276,14 +274,14 @@ def hangman_with_hints(secret_word):
 # Hint: You might want to pick your own secret_word while you're testing.
 
 
-# if __name__ == "__main__":
+if __name__ == "__main__":
 #     # pass
 
 #     # To test part 2, comment out the pass line above and
 #     # uncomment the following two lines.
     
-#     secret_word = choose_word(wordlist)
-#     hangman(secret_word)
+    secret_word = choose_word(wordlist)
+    hangman(secret_word)
 
 ###############
     
@@ -293,4 +291,3 @@ def hangman_with_hints(secret_word):
     #secret_word = choose_word(wordlist)
     #hangman_with_hints(secret_word)
  
-hangman("tact")
