@@ -207,6 +207,7 @@ def hangman(secret_word):
 
 
 
+
 def match_with_gaps(my_word, other_word):
     '''
     my_word: string with _ characters, current guess of secret word
@@ -216,11 +217,22 @@ def match_with_gaps(my_word, other_word):
         _ , and my_word and other_word are of the same length;
         False otherwise: 
     '''
-    # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
-
-
-
+    my_word_no_spaces = my_word.replace(" ", "")
+    
+    # If my_word and other_word are not the same length, return False
+    if len(my_word_no_spaces) != len(other_word):
+        return False
+    for letter in range(len(my_word_no_spaces)):
+        if my_word_no_spaces[letter] != "_":
+            if other_word[letter] != my_word_no_spaces[letter]:
+                return False
+        # If the letter of other_word at my_word's hidden letter index exists in my_word, that means that letter has already been guessed
+        # Hidden letter can not be one of the letters that has already been revealed
+        else: 
+            if other_word[letter] in my_word:
+                return False
+    return True
+            
 def show_possible_matches(my_word):
     '''
     my_word: string with _ characters, current guess of secret word
